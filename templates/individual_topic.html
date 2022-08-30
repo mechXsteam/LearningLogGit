@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <div class="card-header">
+        <p>Topic : {{ topic }}</p>
+        <button type="submit" class="btn btn-primary"><a href="{% url "learning_log:new_entry" topic.id %}" style="color: white;text-decoration: none">Add a new entry</a></button>
+    </div>
+    <ul>
+        {% for entry in entries %}
+            <div class="card mb-3" style="margin-right: 2.2rem; margin-top: 1rem">
+                <h4 class="card-header">{{ entry.date_added|date:'M d, Y' }}
+                <button class="btn btn-primary"><a style="color: white; text-decoration: none" href="{% url 'learning_log:edit_entry' entry.id %}">Edit entry</a></button>
+                <button class="btn btn-danger"><a style="color: white; text-decoration: none" href="{% url 'learning_log:delete_entry' entry.id %}">delete entry</a></button>
+                </h4>
+                <div class="card-body">
+                {{ entry.text|linebreaks }}
+                </div>
+            </div>
+        {% empty %}
+            <li>No entries have been added yet for this {{ topic }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

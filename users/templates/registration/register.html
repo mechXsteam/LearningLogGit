@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <style>
+            #register{
+            padding: 1rem;
+        }
+
+    </style>
+    <form action="{% url "users:register" %}" id="register" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary">Register</button>
+        <input type="hidden" name="next" value="{% url 'learning_log:index' %}">
+    </form>
+{% endblock content %}

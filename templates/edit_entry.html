@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="m-lg-4">
+        <h2><a href="{% url 'learning_log:individual_topic' topic.id %}">{{ topic }}</a></h2>
+        <h2>Edit entry:</h2>
+    </div>
+    <form action="{% url 'learning_log:edit_entry' entry.id %}" method="post" class="m-lg-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+{% endblock content %}

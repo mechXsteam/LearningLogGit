@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <div class="p-lg-4">
+        <h1>Topics</h1>
+    <ul>
+        {% for topic in topics %}
+            <div class="card mb-3" style="margin-right: 2.2rem; margin-top: 1rem">
+                <h4 class="card-header">{{ topic.date_added|date:'M d, Y' }}
+                <button class="btn btn-danger"><a style="color: white; text-decoration: none" href="{% url 'learning_log:delete_topic' topic.id %}">Delete topic</a></button>
+                <button class="btn btn-primary"><a style="color: white; text-decoration: none" href="{% url 'learning_log:individual_topic' topic.id %}">View entries</a></button>
+                </h4>
+                <div class="card-body">
+                {{ topic.text|linebreaks }}
+                </div>
+            </div>
+        {% empty %}
+            <li><h3>No topics have been added yet</h3></li>
+        {% endfor %}
+    </ul>
+    <h3><a href="{% url 'learning_log:new_topic' %}">Add a new topic</a></h3>
+    </div>
+{% endblock content %}
