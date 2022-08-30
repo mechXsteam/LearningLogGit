@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # Third party app
     'bootstrap4'
+    'django-heroku'
 ]
 
 MIDDLEWARE = [
